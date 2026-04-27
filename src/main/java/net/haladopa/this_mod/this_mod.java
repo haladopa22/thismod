@@ -1,6 +1,7 @@
 package net.haladopa.this_mod;
 
 import com.mojang.logging.LogUtils;
+import net.haladopa.this_mod.item.moditems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -31,7 +32,9 @@ public class this_mod
     {
         IEventBus modEventBus = context.getModEventBus();
 
-        // Register the commonSetup method for modloading
+        moditems.regester(modEventBus);
+
+
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
@@ -67,7 +70,9 @@ public class this_mod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+    if(event.getTabKey() == CreativeModeTabs.COMBAT) {
+        event.accept(moditems.STAFF);
+    }
 
     }
 
