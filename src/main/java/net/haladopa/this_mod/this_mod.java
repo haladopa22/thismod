@@ -1,18 +1,26 @@
 package net.haladopa.this_mod;
 
 import com.mojang.logging.LogUtils;
-import net.haladopa.this_mod.item.moditems;
+import net.haladopa.this_mod.block.ModBlocks;
+import net.haladopa.this_mod.network.ModPacketHandler;
+import net.haladopa.this_mod.client.renderer.LucasHorseRenderer;
+import net.haladopa.this_mod.entity.ModEntities;
+import net.haladopa.this_mod.entity.LucasHorse;
+import net.haladopa.this_mod.item.modcreativemodetabs;
+import net.haladopa.this_mod.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -32,7 +40,16 @@ public class this_mod
     {
         IEventBus modEventBus = context.getModEventBus();
 
-        moditems.regester(modEventBus);
+
+        ModPacketHandler.register();
+
+        modcreativemodetabs.register(modEventBus);
+
+        ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModItems.regester(modEventBus);
+
+        modEventBus.addListener(this::registerEntityAttributes);
 
 
         modEventBus.addListener(this::commonSetup);
@@ -54,6 +71,10 @@ public class this_mod
 
     }
 
+    private void registerEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.LUCAS_HORSE.get(), SkeletonHorse.createAttributes().build());
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
@@ -71,7 +92,8 @@ public class this_mod
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
     if(event.getTabKey() == CreativeModeTabs.COMBAT) {
-        event.accept(moditems.STAFF);
+        event.accept(ModItems.STAFF);
+        event.accept(ModItems.titanium);
     }
 
     }
@@ -95,6 +117,11 @@ public class this_mod
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        }
+
+        @SubscribeEvent
+        public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(ModEntities.LUCAS_HORSE.get(), LucasHorseRenderer::new);
         }
     }
 }
