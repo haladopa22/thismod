@@ -1,11 +1,13 @@
 package net.haladopa.this_mod.event;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.haladopa.this_mod.entity.LucasHorse;
 import net.haladopa.this_mod.network.ModPacketHandler;
 import net.haladopa.this_mod.network.ShootArrowPacket;
 import net.haladopa.this_mod.this_mod;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,5 +28,13 @@ public class ClientForgeEvents {
 
         cooldown = 3;
         ModPacketHandler.CHANNEL.sendToServer(new ShootArrowPacket());
+    }
+
+    @SubscribeEvent
+    public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
+        if (!ModEvents.isWearingFullTomSet(event.getEntity())) return;
+        PoseStack poseStack = event.getPoseStack();
+        float scale = 0.5f;
+        poseStack.scale(scale, scale, scale);
     }
 }

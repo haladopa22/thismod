@@ -22,5 +22,11 @@ public class ModPacketHandler {
                 .decoder(ShootArrowPacket::decode)
                 .consumerMainThread(ShootArrowPacket::handle)
                 .add();
+
+        CHANNEL.messageBuilder(ShootLaserPacket.class, 1)
+                .encoder(ShootLaserPacket::encode)
+                .decoder(ShootLaserPacket::decode)
+                .consumerMainThread(ShootLaserPacket::handle)
+                .add();
     }
 }

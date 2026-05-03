@@ -18,6 +18,18 @@ public class ModEntities {
                             .sized(1.4f, 1.6f)
                             .build("lucas_horse"));
 
+    public static final RegistryObject<EntityType<DanielDrone>> DANIEL_DRONE =
+            ENTITY_TYPES.register("daniel_drone", () ->
+                    EntityType.Builder.<DanielDrone>of(DanielDrone::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f)
+                            .build("daniel_drone"));
+
+    public static final RegistryObject<EntityType<LaserBoltEntity>> LASER_BOLT =
+            ENTITY_TYPES.register("laser_bolt", () ->
+                    EntityType.Builder.<LaserBoltEntity>of(LaserBoltEntity::new, MobCategory.MISC)
+                            .sized(0.25f, 0.25f)
+                            .build("laser_bolt"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

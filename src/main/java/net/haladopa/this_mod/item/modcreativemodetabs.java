@@ -39,6 +39,7 @@ public class modcreativemodetabs {
                         pOutput.accept(ModItems.finn_chestplate.get());
                         pOutput.accept(ModItems.finn_leggings.get());
                         pOutput.accept(ModItems.finn_boots.get());
+                        pOutput.accept(ModItems.LASER_GUN.get());
                         pOutput.accept(ModItems.merry_helmet.get());
                         pOutput.accept(ModItems.merry_chestplate.get());
                         pOutput.accept(ModItems.merry_leggings.get());

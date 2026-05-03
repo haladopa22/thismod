@@ -3,7 +3,10 @@ package net.haladopa.this_mod;
 import com.mojang.logging.LogUtils;
 import net.haladopa.this_mod.block.ModBlocks;
 import net.haladopa.this_mod.network.ModPacketHandler;
+import net.haladopa.this_mod.client.renderer.DanielDroneRenderer;
+import net.haladopa.this_mod.client.renderer.LaserBoltRenderer;
 import net.haladopa.this_mod.client.renderer.LucasHorseRenderer;
+import net.haladopa.this_mod.entity.DanielDrone;
 import net.haladopa.this_mod.entity.ModEntities;
 import net.haladopa.this_mod.entity.LucasHorse;
 import net.haladopa.this_mod.item.modcreativemodetabs;
@@ -73,6 +76,7 @@ public class this_mod
 
     private void registerEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.LUCAS_HORSE.get(), SkeletonHorse.createAttributes().build());
+        event.put(ModEntities.DANIEL_DRONE.get(), DanielDrone.createAttributes().build());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -122,6 +126,8 @@ public class this_mod
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ModEntities.LUCAS_HORSE.get(), LucasHorseRenderer::new);
+            event.registerEntityRenderer(ModEntities.DANIEL_DRONE.get(), DanielDroneRenderer::new);
+            event.registerEntityRenderer(ModEntities.LASER_BOLT.get(), LaserBoltRenderer::new);
         }
     }
 }

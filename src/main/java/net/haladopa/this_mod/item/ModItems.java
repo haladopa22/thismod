@@ -22,6 +22,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> STAFF = ITEMS.register("staff",
             () -> new StaffItem(new Item.Properties()));
+    public static final RegistryObject<Item> LASER_GUN = ITEMS.register("laser_gun",
+            () -> new LaserGunItem(new Item.Properties()));
     public static final RegistryObject<Item> MOO_COLA = ITEMS.register("moo_cola",
             () -> new MooColaItem(new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(6).saturationMod(0.3f)
