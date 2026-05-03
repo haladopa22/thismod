@@ -4,7 +4,8 @@
       "Bash(py --version)",
       "Bash(magick --version)",
       "Bash(convert --version)",
-      "Bash(node gen_armor_tex.js)"
+      "Bash(node gen_armor_tex.js)",
+      "Bash(xargs sed *)"
     ]
   }
 }

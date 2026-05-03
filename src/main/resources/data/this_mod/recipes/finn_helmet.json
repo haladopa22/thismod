@@ -1,6 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": ["XXX", "X X", "   "],
-  "key": { "X": { "item": "this_mod:titanium" } },
+  "pattern": ["DDD", "DND", "   "],
+  "key": {
+    "D": { "item": "this_mod:titanium" },
+    "N": { "type": "forge:nbt", "item": "minecraft:name_tag", "nbt": "{display:{Name:'{\"text\":\"finn\"}'}}" }
+  },
   "result": { "item": "this_mod:finn_helmet" }
 }
