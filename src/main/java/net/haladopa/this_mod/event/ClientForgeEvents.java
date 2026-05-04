@@ -29,7 +29,6 @@ public class ClientForgeEvents {
         cooldown = 3;
         ModPacketHandler.CHANNEL.sendToServer(new ShootArrowPacket());
     }
-
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
         if (!ModEvents.isWearingFullTomSet(event.getEntity())) return;
