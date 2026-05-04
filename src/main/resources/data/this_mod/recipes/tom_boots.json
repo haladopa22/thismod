@@ -3,7 +3,7 @@
   "pattern": ["   ", "DND", "D D"],
   "key": {
     "D": { "item": "this_mod:titanium" },
-    "N": { "type": "forge:nbt", "item": "minecraft:name_tag", "nbt": "{display:{Name:'{\"text\":\"tom\"}'}}" }
+    "N": { "type": "this_mod:named_tag", "name": "tom" }
   },
   "result": { "item": "this_mod:tom_boots" }
 }

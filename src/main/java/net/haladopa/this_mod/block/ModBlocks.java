@@ -21,6 +21,13 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> TITANIUM_ORE = BLOCKS.register("titanium_ore",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .strength(3.0f, 3.0f)
+                    .sound(SoundType.STONE)
+                    .requiresCorrectToolForDrops()));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }

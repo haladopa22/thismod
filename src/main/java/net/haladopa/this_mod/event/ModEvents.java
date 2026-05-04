@@ -5,6 +5,8 @@ import net.haladopa.this_mod.entity.LucasHorse;
 import net.haladopa.this_mod.entity.ModEntities;
 import net.haladopa.this_mod.this_mod;
 import net.haladopa.this_mod.item.ModItems;
+import net.haladopa.this_mod.item.ScytheItem;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -77,6 +79,24 @@ public class ModEvents {
                 level.addFreshEntity(newHorse);
                 playerHorseMap.put(player.getUUID(), newHorse.getUUID());
             }
+        }
+
+        // --- Harry set multi tool ---
+        boolean wearingHarrySet = isWearingFullHarrySet(player);
+        if (wearingHarrySet && !player.getInventory().contains(new net.minecraft.world.item.ItemStack(ModItems.MULTI_TOOL.get()))) {
+            player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.MULTI_TOOL.get()));
+        }
+
+        // --- Olly set scythe ---
+        boolean wearingOllySet = ScytheItem.isWearingFullOllySet(player);
+        if (wearingOllySet && !player.getInventory().contains(new net.minecraft.world.item.ItemStack(ModItems.SCYTHE.get()))) {
+            player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.SCYTHE.get()));
+        }
+
+        // --- Finn set laser gun ---
+        boolean wearingFinnSet = isWearingFullFinnSet(player);
+        if (wearingFinnSet && !player.getInventory().contains(new net.minecraft.world.item.ItemStack(ModItems.LASER_GUN.get()))) {
+            player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.LASER_GUN.get()));
         }
 
         // --- Tom suit shrink ---
@@ -173,9 +193,29 @@ public class ModEvents {
                player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.lucas_boots.get());
     }
 
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (!ScytheItem.isWearingFullOllySet(player)) return;
+        if (!(player.getMainHandItem().getItem() instanceof ScytheItem)) return;
+        player.heal(event.getAmount());
+    }
+
+    private static boolean isWearingFullFinnSet(Player player) {
+        return player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.finn_helmet.get()) &&
+               player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.finn_chestplate.get()) &&
+               player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.finn_leggings.get()) &&
+               player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.finn_boots.get());
+    }
+
+    private static boolean isWearingFullHarrySet(Player player) {
+        return player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.harry_chestplate.get()) &&
+               player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.harry_leggings.get()) &&
+               player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.harry_boots.get());
+    }
+
     public static boolean isWearingFullTomSet(Player player) {
-        return player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.tom_helmet.get()) &&
-               player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.tom_chestplate.get()) &&
+        return player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.tom_chestplate.get()) &&
                player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.tom_leggings.get()) &&
                player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.tom_boots.get());
     }

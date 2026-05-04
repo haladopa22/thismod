@@ -19,6 +19,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> TITANIUM_BLOCK_ITEM = ITEMS.register("titanium_block",
             () -> new BlockItem(ModBlocks.TITANIUM_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> TITANIUM_ORE_ITEM = ITEMS.register("titanium_ore",
+            () -> new BlockItem(ModBlocks.TITANIUM_ORE.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> STAFF = ITEMS.register("staff",
             () -> new StaffItem(new Item.Properties()));
@@ -33,6 +35,10 @@ public class ModItems {
                     .build())));
     public static final RegistryObject<Item> titanium = ITEMS.register("titanium",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> MULTI_TOOL = ITEMS.register("multi_tool",
+            () -> new MultiToolItem(new Item.Properties().durability(2031)));
+    public static final RegistryObject<Item> SCYTHE = ITEMS.register("scythe",
+            () -> new ScytheItem(new Item.Properties()));
 
     public static final RegistryObject<Item> danielhelmate = ITEMS.register("tophat",
             () -> new ArmorItem(ModArmorMaterials.titanium, ArmorItem.Type.HELMET,new Item.Properties()));
@@ -43,8 +49,6 @@ public class ModItems {
     public static final RegistryObject<Item> danielboots = ITEMS.register("shoes",
             () -> new ArmorItem(ModArmorMaterials.titanium, ArmorItem.Type.BOOTS,new Item.Properties()));
 
-    public static final RegistryObject<Item> tom_helmet = ITEMS.register("tom_helmet",
-            () -> new ArmorItem(ModArmorMaterials.tom, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> tom_chestplate = ITEMS.register("tom_chestplate",
             () -> new ArmorItem(ModArmorMaterials.tom, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> tom_leggings = ITEMS.register("tom_leggings",
@@ -79,8 +83,6 @@ public class ModItems {
     public static final RegistryObject<Item> merry_boots = ITEMS.register("merry_boots",
             () -> new ArmorItem(ModArmorMaterials.merry, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-    public static final RegistryObject<Item> harry_helmet = ITEMS.register("harry_helmet",
-            () -> new ArmorItem(ModArmorMaterials.harry, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> harry_chestplate = ITEMS.register("harry_chestplate",
             () -> new ArmorItem(ModArmorMaterials.harry, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> harry_leggings = ITEMS.register("harry_leggings",

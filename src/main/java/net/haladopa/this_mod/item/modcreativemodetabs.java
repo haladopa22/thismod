@@ -20,14 +20,16 @@ public class modcreativemodetabs {
                     .title(Component.translatable("creativetab.this_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.TITANIUM_BLOCK_ITEM.get());
+                        pOutput.accept(ModItems.TITANIUM_ORE_ITEM.get());
                         pOutput.accept(ModItems.STAFF.get());
                         pOutput.accept(ModItems.titanium.get());
                         pOutput.accept(ModItems.MOO_COLA.get());
+                        pOutput.accept(ModItems.MULTI_TOOL.get());
+                        pOutput.accept(ModItems.SCYTHE.get());
                         pOutput.accept(ModItems.danielhelmate.get());
                         pOutput.accept(ModItems.danielcheastplate.get());
                         pOutput.accept(ModItems.danielleggings.get());
                         pOutput.accept(ModItems.danielboots.get());
-                        pOutput.accept(ModItems.tom_helmet.get());
                         pOutput.accept(ModItems.tom_chestplate.get());
                         pOutput.accept(ModItems.tom_leggings.get());
                         pOutput.accept(ModItems.tom_boots.get());
@@ -44,7 +46,6 @@ public class modcreativemodetabs {
                         pOutput.accept(ModItems.merry_chestplate.get());
                         pOutput.accept(ModItems.merry_leggings.get());
                         pOutput.accept(ModItems.merry_boots.get());
-                        pOutput.accept(ModItems.harry_helmet.get());
                         pOutput.accept(ModItems.harry_chestplate.get());
                         pOutput.accept(ModItems.harry_leggings.get());
                         pOutput.accept(ModItems.harry_boots.get());
